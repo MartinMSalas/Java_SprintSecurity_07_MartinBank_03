@@ -1,4 +1,4 @@
-package com.martin.egg.martinbank3.config;
+package com.martin.egg.martinbank3.service;
 
 import com.martin.egg.martinbank3.model.Customer;
 import com.martin.egg.martinbank3.repository.CustomerRepository;
