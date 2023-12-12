@@ -32,7 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/welcome/helloprotected").hasAnyRole("USER", "ADMIN")
 
                          */
-                        .anyRequest().authenticated())
+                        .anyRequest().denyAll())
                 .formLogin(withDefaults())
                 .build();
 
