@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 @Service
-public class MartinBankUserDetails implements UserDetailsService {
+public class MartinBankUserDetails {
+    // public class MartinBankUserDetails implements UserDetailsService {
 
     CustomerRepository customerRepository;
 
@@ -22,6 +23,8 @@ public class MartinBankUserDetails implements UserDetailsService {
     public MartinBankUserDetails(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
+    /*
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String userName, password;
@@ -38,4 +41,6 @@ public class MartinBankUserDetails implements UserDetailsService {
 
         return new User(userName, password, authorities);
     }
+
+     */
 }
