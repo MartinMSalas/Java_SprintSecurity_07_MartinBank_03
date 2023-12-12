@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping("/auth")
 public class LoginController {
 
     @Autowired
