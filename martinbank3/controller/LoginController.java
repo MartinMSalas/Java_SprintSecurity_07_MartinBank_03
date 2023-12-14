@@ -1,6 +1,8 @@
 package com.martin.egg.martinbank3.controller;
 
 
+import com.martin.egg.martinbank3.dto.CustomerDTO;
+import com.martin.egg.martinbank3.mapper.CustomerMapper;
 import com.martin.egg.martinbank3.model.Customer;
 import com.martin.egg.martinbank3.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +22,25 @@ import java.util.List;
 @RequestMapping("/auth")
 public class LoginController {
 
-    @Autowired
+
     private CustomerRepository customerRepository;
 
-    @Autowired
+    private CustomerMapper customerMapper;
+
     private PasswordEncoder passwordEncoder;
 
+    public LoginController(CustomerRepository customerRepository, CustomerMapper customerMapper, PasswordEncoder passwordEncoder) {
+        this.customerRepository = customerRepository;
+        this.customerMapper = customerMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody Customer customer) {
+    public ResponseEntity<String> registerUser(@RequestBody CustomerDTO customerDTO) {
         Customer savedCustomer = null;
         ResponseEntity response = null;
         try {
-            String hashPwd = passwordEncoder.encode(customer.getPwd());
+            String hashPwd = passwordEncoder.encode(customerDTO.getPwd());
+            Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
             customer.setPwd(hashPwd);
             customer.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
             savedCustomer = customerRepository.save(customer);
